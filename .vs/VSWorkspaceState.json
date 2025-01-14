@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EcommerceApi",
+    "\\EcommerceApi\\Controllers",
+    "\\EcommerceDataLayer",
+    "\\EcommerceDataLayer\\IRopesitry",
+    "\\EcommerceDataLayer\\Shared",
+    "\\EcommerceLogicalLayer"
+  ],
+  "SelectedNode": "\\EcommerceDataLayer\\IRopesitry\\IUpdatetableRopesitry.cs",
+  "PreviewInSolutionExplorer": false
+}
