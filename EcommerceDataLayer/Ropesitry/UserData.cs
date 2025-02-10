@@ -1,14 +1,14 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using EcommerceDataLayer.DTOS;
 using EcommerceDataLayer.Shared;
+using EcommerceDataLayer.IRopesitry;
 
 
 namespace EcommerceDataLayer.Ropesitry
 {
 
-    public class UserDataAccess
+    public class UserDataAccess : IApplicationUser
     {
         private readonly string _connectionString;
         public UserDataAccess(ConnectionString connectionString)
@@ -200,12 +200,5 @@ namespace EcommerceDataLayer.Ropesitry
         }
 
     }
-
-
-
-
-
-
-
 
 }

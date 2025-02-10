@@ -34,3 +34,6 @@ C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\Ecommerce
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\refint\EcommerceDataLayer.dll
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\EcommerceDataLayer.pdb
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\ref\EcommerceDataLayer.dll
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\EcommerceDataLayer.sourcelink.json
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\bin\Debug\net8.0\EcommerceDataLayer.runtimeconfig.json
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceDataLayer\obj\Debug\net8.0\EcommerceDataLayer.genruntimeconfig.cache

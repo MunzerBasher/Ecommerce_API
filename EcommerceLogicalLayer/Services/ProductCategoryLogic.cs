@@ -1,58 +1,91 @@
 ﻿using EcommerceDataLayer.DTOS;
-using EcommerceDataLayer.Ropesitry;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EcommerceDataLayer.IRopesitry;
+using EcommerceLogicalLayer.Helpers;
+using Microsoft.AspNetCore.Http;
+
+
 
 namespace EcommerceLogicalLayer.Services
 {
-    public class ProductCategoryLogic
+    public class ProductCategoryLogic(ICategoriesRopesitry categoriesRopesitry) : ICategoriesServices
     {
+        private readonly ICategoriesRopesitry _categoriesRopesitry = categoriesRopesitry;
 
-        // Create Product Category
-        public static void CreateProductCategory(string categoryName)
+        public async Task<Result<bool>> Add(CategoryRequest CategoryRequest)
         {
-            // Pass to server layer to insert the product category
-            ProductCategoryData.CreateProductCategory(categoryName);
+            var name = await _categoriesRopesitry.IsExistNameAsync(CategoryRequest.CategoryName);
+            if (!name)
+                return Result<bool>.Fialer<bool>(new Erorr("Duplicated Name ", StatusCodes.Status400BadRequest));
+
+            var category = await _categoriesRopesitry.AddAsync(CategoryRequest);
+            return category ? Result<bool>.Seccuss(category) : 
+                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
 
-        // Get Product Category by CategoryID
-        public static DataTable GetProductCategory(int categoryId)
+        public async Task<Result<bool>> ToggleStatus(int categoryId)
         {
-            // Retrieve data from server layer
-            return ProductCategoryData.GetProductCategory(categoryId);
+            if (categoryId < 1)
+                return Result<bool>.Fialer<bool>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+            var category = await _categoriesRopesitry.IsExistAsync(categoryId);
+            if(!category)
+                return Result<bool>.Fialer<bool>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+            var result = await _categoriesRopesitry.ToggleStatusAsync(categoryId);
+            return result ? Result<int>.Seccuss<bool>(result) :
+                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+
         }
 
-        // Update Product Category
-        public static void UpdateProductCategory(int categoryId, string categoryName)
+        public async Task<Result<List<CategoryResponse>>> GetAll()
         {
-
-            // Pass to server layer to update the product category
-            ProductCategoryData.UpdateProductCategory(categoryId, categoryName);
+            var result = await _categoriesRopesitry.GetAllAsync();
+            return Result<List<CategoryResponse>>.Seccuss(result);
         }
 
-        // Delete Product Category
-        public static void DeleteProductCategory(int categoryId)
+        public async Task<Result<CategoryResponse>> GetById(int categoryId)
         {
-            // Pass to server layer to delete the product category
-            ProductCategoryData.DeleteProductCategory(categoryId);
+            if (categoryId < 1)
+                return Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+            var category = await _categoriesRopesitry.IsExistAsync(categoryId);
+            if (!category)
+                return Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+            
+            var result = await _categoriesRopesitry.GetByIdAsync(categoryId);
+            return result is null ? Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Not Found", StatusCodes.Status404NotFound))
+                : Result<CategoryResponse>.Seccuss(result);                   
+
         }
 
-        public static List<ProductCategoryDTO> GetAllProductCategories()
+        public async Task<Result<List<CategoryResponse>>> Search(string firstChar)
         {
-            return ProductCategoryData.GetAllProductCategories();
+            if (firstChar is null)
+                return Result <List< CategoryResponse >>.Fialer < List<CategoryResponse>>(new Erorr("No Data For Searching", StatusCodes.Status400BadRequest));
+            var result = await _categoriesRopesitry.SearchAsync(firstChar); 
+            return result is null ? Result<List<CategoryResponse>>.Fialer<List<CategoryResponse>>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError))
+                : Result<CategoryResponse>.Seccuss(result);
+
         }
 
-        public static List<ProductCategoryDTO> SearchProductCategoriesByFirstChar(string firstChar)
+        public async Task<Result<bool>> Update(int categoryId, CategoryRequest categoryRequest)
         {
-            return ProductCategoryData.SearchProductCategoriesByFirstChar(firstChar);
+            if (categoryId < 1 )
+                return Result<bool>.Fialer<bool>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+            var category = await _categoriesRopesitry.IsExistAsync(categoryId);
+            if (!category)
+                return Result<bool>.Fialer<bool>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+        
+            var IsNameExist = await _categoriesRopesitry.IsExistNameAsync(categoryRequest.CategoryName);
+            if(IsNameExist)
+            {
+                var categor = await _categoriesRopesitry.GetByNameAsync(categoryRequest.CategoryName);
+                if(categor is null)
+                    Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+                if(categor!.CategoryID !=  categoryId)
+                    return Result<bool>.Fialer<bool>(new Erorr("Duplicated Name ", StatusCodes.Status400BadRequest));
+            }
+            var result = await _categoriesRopesitry.UpdateAsync(categoryId, categoryRequest);
+            return result ? Result<bool>.Seccuss(result) :
+                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
-
-
-
-
     }
+
 }

@@ -5,9 +5,13 @@
     "\\EcommerceApi\\Controllers",
     "\\EcommerceDataLayer",
     "\\EcommerceDataLayer\\IRopesitry",
+    "\\EcommerceDataLayer\\Ropesitry",
     "\\EcommerceDataLayer\\Shared",
-    "\\EcommerceLogicalLayer"
+    "\\EcommerceLogicalLayer",
+    "\\EcommerceLogicalLayer\\Errors",
+    "\\EcommerceLogicalLayer\\IServices",
+    "\\EcommerceLogicalLayer\\Services"
   ],
-  "SelectedNode": "\\EcommerceDataLayer\\IRopesitry\\IRopesitry.cs",
+  "SelectedNode": "\\EcommerceDataLayer\\Ropesitry\\UserData.cs",
   "PreviewInSolutionExplorer": false
 }
