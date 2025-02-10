@@ -6,18 +6,19 @@ namespace EcommerceDataLayer.IRopesitry
 {
     public interface IAddressRopesitry
     {
-        public Task<bool> AddAsync(AddressRequest address);
+        Task<bool> AddAsync(AddressRequest address);
 
-        public Task<AddressDTO?> GetByIdAsync(int addressID);
+        Task<AddressResponse?> GetByIdAsync(int addressId);
 
-        public Task<bool> UpdateAsync(AddressDTO address);
+        Task<bool> UpdateAsync(AddressRequest address, int addressId);
 
-        public Task<bool> DeleteAsync(int addressID);
+        Task<bool> DeleteAsync(int addressID);
 
-        public Task<List<AddressDTO>> GetAllAddressesByUserIDAsync(int userID);
+        Task<List<AddressResponse>> GetAllAddressesByUserIDAsync(string UserId);
 
+        Task<List<AddressResponse>> GetAllAsync();
 
-
+        Task<bool> IsExistAsync(int AddressId);
 
     }
 }

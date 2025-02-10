@@ -9,5 +9,7 @@
 
         public static string ServerError = "Internal ServerError";
 
+        public static string InValidStatus = "InValid Status , Status Most Be Between 1  - 3 ";
+
     }
 }

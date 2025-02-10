@@ -1,4 +1,4 @@
-﻿using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Products;
 using EcommerceDataLayer.IRopesitry;
 using EcommerceDataLayer.Shared;
 using Microsoft.Data.SqlClient;
@@ -100,7 +100,67 @@ namespace EcommerceDataLayer.Ropesitry
 
             return rowsAffected; 
         }
-    }
+
+
+
+
+
+
+        public async Task<string> GetImageURL(int @ImageId)
+        {
+            var ImageURL = "";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                SqlCommand cmd = new SqlCommand("GetImageURL", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ImageId", ImageId);
+
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (!await reader.ReadAsync())
+                    {
+                        return null!;
+                    }
+
+                    ImageURL = Convert.ToString(await cmd.ExecuteScalarAsync());
+
+                }
+            }
+            return ImageURL!;
+        }
+
+
+
+
+
+        public async Task<bool> IsExistAsync(int @ImageId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                SqlCommand command = new SqlCommand("ImageIsEXISTS", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@ImageId", @ImageId);
+
+                int rowsAffected = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                return rowsAffected > 0;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+        }
 
 
 }

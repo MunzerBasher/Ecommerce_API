@@ -4,7 +4,7 @@ namespace EcommerceDataLayer.Entities.Items
     public class ItemResponse
     {
 
-        public string ProductName { get; set; } = string.Empty;
+        public int ProductId { get; set; }
 
         public decimal Quantity { get; set; }
 

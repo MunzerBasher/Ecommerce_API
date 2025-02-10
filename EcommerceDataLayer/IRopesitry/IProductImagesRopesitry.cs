@@ -1,5 +1,4 @@
-﻿
-using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Products;
 
 namespace EcommerceDataLayer.IRopesitry
 {
@@ -10,5 +9,9 @@ namespace EcommerceDataLayer.IRopesitry
         Task<List<ProductImageResponse>> GetAllAsync(int productId);
 
         Task<int> DeleteAsync(int imageId);
+
+        Task<string> GetImageURL(int @ImageId);
+
+        Task<bool> IsExistAsync(int @ImageId);
     }
 }

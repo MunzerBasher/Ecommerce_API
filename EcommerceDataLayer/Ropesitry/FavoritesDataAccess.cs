@@ -15,7 +15,7 @@ public class FavoritesDataAccess : IFavoritesRopesitry
     }
 
 
-    public async Task<bool> Delete(int productID, int userID, CancellationToken cancellationToken = default)
+    public async Task<bool> Delete(int productID, string userID, CancellationToken cancellationToken = default)
     {
         var rows = 0;
         using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -30,7 +30,7 @@ public class FavoritesDataAccess : IFavoritesRopesitry
         return rows > 0;
     }
 
-    public  async Task<bool> Add(int productID, int userID, bool isFavorite = true, CancellationToken cancellationToken = default)
+    public  async Task<bool> Add(int productID, string userID, bool isFavorite = true, CancellationToken cancellationToken = default)
     {
         var rows = 0;
         using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -47,7 +47,7 @@ public class FavoritesDataAccess : IFavoritesRopesitry
         return rows > 0;
     }
 
-    public async Task<List<int>> GetByUserId(int userId, CancellationToken cancellationToken = default)
+    public async Task<List<int>> GetByUserId(string userId, CancellationToken cancellationToken = default)
     {
         List<int> favoriteProductIds = new List<int>();
 

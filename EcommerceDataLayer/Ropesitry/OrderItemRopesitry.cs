@@ -15,50 +15,7 @@ namespace EcommerceDataLayer.Ropesitry
         {
             _connectionString = connectionString.connectionString;
         }
-
-        public async Task<int> AddAsync(OrderItemDTO orderItem)
-        {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                await conn.OpenAsync();
-                SqlCommand cmd = new SqlCommand("sp_CreateOrderItem", conn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                // Adding parameters
-                cmd.Parameters.AddWithValue("@OrderID", orderItem.OrderID);
-                cmd.Parameters.AddWithValue("@ProductID", orderItem.ProductID);
-                cmd.Parameters.AddWithValue("@Quantity", orderItem.Quantity);
-                cmd.Parameters.AddWithValue("@Price", orderItem.Price);
-
-                // Execute and return the OrderItemID
-                var result = await cmd.ExecuteScalarAsync();
-                return Convert.ToInt32(result);
-            }
-        }
-
-        public async Task<bool> UpdateAsync(OrderItemDTO orderItem)
-        {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("sp_UpdateOrderItem", conn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                await conn.OpenAsync();
-
-                // Adding parameters
-                cmd.Parameters.AddWithValue("@OrderItemID", orderItem.OrderItemID);
-                cmd.Parameters.AddWithValue("@OrderID", orderItem.OrderID);
-                cmd.Parameters.AddWithValue("@ProductID", orderItem.ProductID);
-                cmd.Parameters.AddWithValue("@Quantity", orderItem.Quantity);
-                cmd.Parameters.AddWithValue("@Price", orderItem.Price);
-
-                int rowsAffected = await cmd.ExecuteNonQueryAsync();
-                return rowsAffected > 0;
-            }
-        }
+        
 
         public async Task<bool> DeleteAsync(int orderItemID)
         {

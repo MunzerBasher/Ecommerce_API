@@ -1,8 +1,8 @@
 ﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using EcommerceDataLayer.DTOS;
 using EcommerceDataLayer.Shared;
 using EcommerceDataLayer.IRopesitry;
+using Microsoft.Data.SqlClient;
+using EcommerceDataLayer.Entities.Users;
 
 
 namespace EcommerceDataLayer.Ropesitry

@@ -3,10 +3,7 @@
 namespace EcommerceDataLayer.IRopesitry
 {
     public interface IOrderItemsRopesitry
-    {
-        Task<int> AddAsync(OrderItemDTO orderItem);
-
-        Task<bool> UpdateAsync(OrderItemDTO orderItem);
+    {      
 
         Task<bool> DeleteAsync(int orderItemID);
 

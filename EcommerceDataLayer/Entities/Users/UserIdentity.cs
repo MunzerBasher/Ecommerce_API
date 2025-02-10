@@ -10,5 +10,7 @@ namespace EcommerceDataLayer.Entities.Users
 
         public bool  IsDesable { get; set; } = false;
 
+        public List<RefreshToken> RefreshTokens { get; set; } = [];
+
     }
 }

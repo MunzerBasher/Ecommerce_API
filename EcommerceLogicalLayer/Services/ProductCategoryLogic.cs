@@ -1,4 +1,4 @@
-﻿using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Categories;
 using EcommerceDataLayer.IRopesitry;
 using EcommerceLogicalLayer.Helpers;
 using Microsoft.AspNetCore.Http;
@@ -15,23 +15,23 @@ namespace EcommerceLogicalLayer.Services
         {
             var name = await _categoriesRopesitry.IsExistNameAsync(CategoryRequest.CategoryName);
             if (!name)
-                return Result<bool>.Fialer<bool>(new Erorr("Duplicated Name ", StatusCodes.Status400BadRequest));
+                return Result<bool>.Failure<bool>(new Error("Duplicated Name ", StatusCodes.Status400BadRequest));
 
             var category = await _categoriesRopesitry.AddAsync(CategoryRequest);
             return category ? Result<bool>.Seccuss(category) : 
-                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+                Result<bool>.Failure<bool>(new Error("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
 
         public async Task<Result<bool>> ToggleStatus(int categoryId)
         {
             if (categoryId < 1)
-                return Result<bool>.Fialer<bool>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+                return Result<bool>.Failure<bool>(new Error("Status BadRequest", StatusCodes.Status400BadRequest));
             var category = await _categoriesRopesitry.IsExistAsync(categoryId);
             if(!category)
-                return Result<bool>.Fialer<bool>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error("Not Found", StatusCodes.Status404NotFound));
             var result = await _categoriesRopesitry.ToggleStatusAsync(categoryId);
             return result ? Result<int>.Seccuss<bool>(result) :
-                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+                Result<bool>.Failure<bool>(new Error("Internal Server Error", StatusCodes.Status500InternalServerError));
 
         }
 
@@ -44,13 +44,13 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<CategoryResponse>> GetById(int categoryId)
         {
             if (categoryId < 1)
-                return Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+                return Result<CategoryResponse>.Failure<CategoryResponse>(new Error("Status BadRequest", StatusCodes.Status400BadRequest));
             var category = await _categoriesRopesitry.IsExistAsync(categoryId);
             if (!category)
-                return Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+                return Result<CategoryResponse>.Failure<CategoryResponse>(new Error("Not Found", StatusCodes.Status404NotFound));
             
             var result = await _categoriesRopesitry.GetByIdAsync(categoryId);
-            return result is null ? Result<CategoryResponse>.Fialer<CategoryResponse>(new Erorr("Not Found", StatusCodes.Status404NotFound))
+            return result is null ? Result<CategoryResponse>.Failure<CategoryResponse>(new Error("Not Found", StatusCodes.Status404NotFound))
                 : Result<CategoryResponse>.Seccuss(result);                   
 
         }
@@ -58,9 +58,9 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<List<CategoryResponse>>> Search(string firstChar)
         {
             if (firstChar is null)
-                return Result <List< CategoryResponse >>.Fialer < List<CategoryResponse>>(new Erorr("No Data For Searching", StatusCodes.Status400BadRequest));
+                return Result <List< CategoryResponse >>.Failure < List<CategoryResponse>>(new Error("No Data For Searching", StatusCodes.Status400BadRequest));
             var result = await _categoriesRopesitry.SearchAsync(firstChar); 
-            return result is null ? Result<List<CategoryResponse>>.Fialer<List<CategoryResponse>>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError))
+            return result is null ? Result<List<CategoryResponse>>.Failure<List<CategoryResponse>>(new Error("Internal Server Error", StatusCodes.Status500InternalServerError))
                 : Result<CategoryResponse>.Seccuss(result);
 
         }
@@ -68,24 +68,30 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<bool>> Update(int categoryId, CategoryRequest categoryRequest)
         {
             if (categoryId < 1 )
-                return Result<bool>.Fialer<bool>(new Erorr("Status BadRequest", StatusCodes.Status400BadRequest));
+                return Result<bool>.Failure<bool>(new Error("Status BadRequest", StatusCodes.Status400BadRequest));
             var category = await _categoriesRopesitry.IsExistAsync(categoryId);
             if (!category)
-                return Result<bool>.Fialer<bool>(new Erorr("Not Found", StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error("Not Found", StatusCodes.Status404NotFound));
         
             var IsNameExist = await _categoriesRopesitry.IsExistNameAsync(categoryRequest.CategoryName);
             if(IsNameExist)
             {
                 var categor = await _categoriesRopesitry.GetByNameAsync(categoryRequest.CategoryName);
                 if(categor is null)
-                    Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+                    Result<bool>.Failure<bool>(new Error("Internal Server Error", StatusCodes.Status500InternalServerError));
                 if(categor!.CategoryID !=  categoryId)
-                    return Result<bool>.Fialer<bool>(new Erorr("Duplicated Name ", StatusCodes.Status400BadRequest));
+                    return Result<bool>.Failure<bool>(new Error("Duplicated Name ", StatusCodes.Status400BadRequest));
             }
             var result = await _categoriesRopesitry.UpdateAsync(categoryId, categoryRequest);
             return result ? Result<bool>.Seccuss(result) :
-                Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+                Result<bool>.Failure<bool>(new Error("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
+
+        public async Task<bool> IsExistAsync(int categoryId)
+        {
+            return await _categoriesRopesitry.IsExistAsync(categoryId);
+        }
+
     }
 
 }

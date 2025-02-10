@@ -9,7 +9,7 @@ namespace EcommerceLogicalLayer.Extensions
 
         public static ObjectResult ToProblem(this Result results)
         {
-            if (results.IsSeccuss)
+            if (results.IsSuccess)
                 throw new InvalidOperationException("Can't Convert success result to a problem");
             var problem = Results.Problem(statusCode: results.Erorr.statusCode);
             var problemDetails = problem.GetType().GetProperty(nameof(ProblemDetails))!.GetValue(problem) as ProblemDetails;

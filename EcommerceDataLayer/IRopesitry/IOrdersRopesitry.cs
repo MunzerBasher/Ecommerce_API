@@ -1,4 +1,4 @@
-﻿
+﻿using EcommerceDataLayer.Entities.Orders;
 
 namespace EcommerceDataLayer.IRopesitry
 {
@@ -10,18 +10,20 @@ namespace EcommerceDataLayer.IRopesitry
 
         Task<bool> DeleteAsync(int orderId);
 
-        Task<List<OrderDTOWithUserName>> GetAllAsync();
+        Task<List<OrderResponse>> GetAllAsync();
 
-        Task<List<OrderDTOWithUserName>> RecentlyOrdersAsync();
+        Task<List<OrderResponse>> RecentlyOrdersAsync();
 
         Task<int> GetOrderTotalPriceAsync(int OrderID);
 
         Task<int> CountOrdersByStatusAsync(int ordersStatus);
 
-        public Task<bool> IsExistAsync(int ProductID);
+        // public Task<bool> IsExistAsync(int ProductID);
 
+        Task<List<OrderResponse>> GetUserOrdersAsync(string UserId);
 
         Task<int> CountOrdersAsync();
     }
+
 
 }

@@ -5,7 +5,7 @@ namespace EcommerceDataLayer.Entities.Address
     public class AddressRequest
     {
 
-        public int UserID { get; set; }
+        public string UserId { get; set; } = string.Empty;
         public required string AddressLine { get; set; }
         public required string City { get; set; }
         public required string Country { get; set; }

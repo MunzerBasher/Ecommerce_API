@@ -1,5 +1,4 @@
-﻿
-using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Categories;
 using EcommerceLogicalLayer.Helpers;
 using System.Data;
 
@@ -20,7 +19,7 @@ namespace EcommerceDataLayer.IRopesitry
 
         public Task<Result<List<CategoryResponse>>> GetAll();
 
-
+        public Task<bool> IsExistAsync(int categoryId);
 
         public Task<Result<List<CategoryResponse>>> Search(string firstChar);
 

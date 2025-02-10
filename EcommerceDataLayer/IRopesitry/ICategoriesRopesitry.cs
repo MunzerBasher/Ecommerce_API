@@ -1,5 +1,4 @@
-﻿
-using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Categories;
 
 
 namespace EcommerceDataLayer.IRopesitry

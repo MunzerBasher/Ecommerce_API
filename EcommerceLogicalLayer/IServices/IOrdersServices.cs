@@ -1,6 +1,4 @@
-﻿
-
-using EcommerceDataLayer.Entities.Orders;
+﻿using EcommerceDataLayer.Entities.Orders;
 using EcommerceLogicalLayer.Helpers;
 
 namespace EcommerceDataLayer.IRopesitry
@@ -8,22 +6,24 @@ namespace EcommerceDataLayer.IRopesitry
     public interface IOrdersServices
     {
 
-        public Task<Result<AddOrdersResponse>> Add(OrderRequest orderRequest);
+        Task<Result<AddOrdersResponse>> Add(OrderRequest orderRequest);
 
+        Task<Result<List<OrderResponse>>> GetUserOrdersAsync(string UserId);
 
-        public Task<Result<bool>> Delete(int orderId);
+        Task<Result<bool>> Delete(int orderId);
 
-        public  Task<bool> IsExistAsync(int OrderID);
+        Task<bool> IsExistAsync(int OrderID);
 
-        public Task<Result<List<OrderDTOWithUserName>>> GetAll();
+        Task<Result<List<OrderResponse>>> GetAll();
 
-        public Task<Result<List<OrderDTOWithUserName>>> RecentlyOrders();
+        Task<Result<List<OrderResponse>>> RecentlyOrders();
 
-        public Task<Result<int>> GetOrderTotalPrice(int OrderID);
+        Task<Result<int>> GetOrderTotalPrice(int OrderID);
 
-        public Task<Result<int>> CountOrdersByStatus(int ordersStatus);
+        Task<Result<int>> CountOrdersByStatus(int ordersStatus);
 
-        public Task<Result<int>> CountOrders();
+        Task<Result<int>> CountOrders();
 
     }
+
 }

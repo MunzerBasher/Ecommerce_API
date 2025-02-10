@@ -1,5 +1,4 @@
-﻿
-using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Products;
 
 namespace EcommerceDataLayer.IRopesitry
 {
@@ -9,15 +8,21 @@ namespace EcommerceDataLayer.IRopesitry
 
         Task<List<ProductResponse>> GetProductsByFirstCharAsync(string firstChar);
 
-        Task<bool> AddAsync(ProductResponse product);
+        Task<bool> AddAsync(ProductRequest product);
 
-        Task<bool> UpdateAsync(ProductResponse product);
+        Task<bool> UpdateAsync(ProductRequest product , int productId);
 
         Task<bool> DeleteAsync(int id);
 
         Task<ProductResponse> GetByIdAsync(int id);
 
         Task<bool> IsExistAsync(int id);
+
+        Task<int> ProductvalibaleQuantity(int ProductId);
+
+        Task<bool> IsExistNameAsync(string Name);
+
+        Task<int> GetByNameAsync(string ProductName);
 
     }
 }

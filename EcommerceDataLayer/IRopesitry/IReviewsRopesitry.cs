@@ -1,21 +1,33 @@
-﻿
-using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Reviews;
 
 namespace EcommerceDataLayer.IRopesitry
 {
     public interface IReviewsRopesitry
     {
-        // Asynchronously retrieves all reviews.
-        Task<List<Review>> GetAllAsync();
+     
 
-        // Asynchronously adds a new review.
-        Task AddAsync(ReviewDTOForCreate review);
+        Task<List<ReviewResponse>> GetAllProductReviewsAsync(int ProductId);
 
-        // Asynchronously deletes a review by its ID.
-        Task DeleteAsync(int reviewID);
 
-        // Asynchronously updates an existing review.
-        Task UpdateAsync(ReviewDTOForUpdate review);
+        Task<List<ReviewResponse>> GetAllUserReviewsAsync(string UserId);
+
+
+        Task<List<ReviewResponse>> GetAllUserInProductReviewsAsync(string UserId, int ProductId);
+
+
+        Task<bool> AddAsync(ReviewRequest review);
+
+        
+        Task<bool> DeleteAsync( int ReviewId);
+
+
+        Task<bool> IsExistAsync(int ReviewId);
+
+
+        Task<bool> UpdateAsync(UpdateReviewRequest updateReviewRequest, int ReviewId);
+
+
+
     }
 
 }

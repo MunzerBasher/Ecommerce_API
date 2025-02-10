@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj": {}
+    "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj",
         "projectName": "EcommerceDataLayer",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AspNetCore.HealthChecks.Hangfire": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Fast.Mapster.DependencyInjection": {
               "target": "Package",
               "version": "[3.5.0, )"
@@ -66,6 +74,26 @@
               "target": "Package",
               "version": "[11.11.0, )"
             },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "Hangfire.Dashboard.Basic.Authentication": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "Mapster.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -78,7 +106,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -90,9 +118,21 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[47.3.0, )"
             }
           },
           "imports": [
@@ -115,14 +155,14 @@
         }
       }
     },
-    "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj",
         "projectName": "EcommerceLogicalLayer",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceLogicalLayer\\EcommerceLogicalLayer.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceLogicalLayer\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceLogicalLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -144,8 +184,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj": {
-                "projectPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj"
+              "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\EcommerceDataLayer\\EcommerceDataLayer.csproj"
               }
             }
           }
@@ -165,6 +205,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AspNetCore.HealthChecks.Hangfire": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Fast.Mapster.DependencyInjection": {
               "target": "Package",
               "version": "[3.5.0, )"
@@ -181,6 +229,30 @@
               "target": "Package",
               "version": "[11.11.0, )"
             },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "Hangfire.Dashboard.Basic.Authentication": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.10.0, )"
+            },
+            "Mapster.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.2.2, )"
@@ -189,7 +261,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -201,9 +273,21 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[47.3.0, )"
             }
           },
           "imports": [

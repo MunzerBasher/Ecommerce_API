@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "fcY7xAOgY0mCoPIsuge86a3hWKTszbW7OMs+89ibXcg=",
+  "Source": "Api",
+  "BasePath": "_content/Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Api\\wwwroot",
+      "Source": "Api",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\images\\0821a4ef-c35a-42ca-8747-fa2368d5da74.png",
+      "SourceId": "Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "RelativePath": "images/0821a4ef-c35a-42ca-8747-fa2368d5da74.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\0821a4ef-c35a-42ca-8747-fa2368d5da74.png"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\images\\c8e6918c-bb5c-47d0-90e6-a05fadf9e370.jpg",
+      "SourceId": "Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "RelativePath": "images/c8e6918c-bb5c-47d0-90e6-a05fadf9e370.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\c8e6918c-bb5c-47d0-90e6-a05fadf9e370.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\images\\f6422c83-e7b8-4699-988e-e1c944e30f25.png",
+      "SourceId": "Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\Ecommerce-WebApi\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "RelativePath": "images/f6422c83-e7b8-4699-988e-e1c944e30f25.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\f6422c83-e7b8-4699-988e-e1c944e30f25.png"
+    }
+  ]
+}

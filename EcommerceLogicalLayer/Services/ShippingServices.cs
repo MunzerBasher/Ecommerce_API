@@ -15,18 +15,18 @@ namespace EcommerceLogicalLayer.Services
             var result = await _shippingRopesitry.AddAsync(Request);
             if(result > 0)
                 return Result<int>.Seccuss(result);
-            return Result<int>.Fialer<int>(new Erorr(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
+            return Result<int>.Failure<int>(new Error(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
         }
 
         public async Task<Result<bool>> Delete(int shippingID)
         {
             var result = await _shippingRopesitry.IsExistAsync(shippingID);
             if (!result)
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
             
             var deleted = await _shippingRopesitry.DeleteAsync(shippingID);
             if(deleted < 0)
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
             return Result<bool>.Seccuss(result);
         }
 
@@ -40,10 +40,10 @@ namespace EcommerceLogicalLayer.Services
         {
             var result = await _shippingRopesitry.IsExistAsync(shippingID);
             if (!result)
-                return Result<ShippingResponse>.Fialer<ShippingResponse>(new Erorr(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
+                return Result<ShippingResponse>.Failure<ShippingResponse>(new Error(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
             var shipping = await _shippingRopesitry.GetByIdAsync(shippingID);
             if(shipping == null)
-                return Result<ShippingResponse>.Fialer<ShippingResponse>(new Erorr(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
+                return Result<ShippingResponse>.Failure<ShippingResponse>(new Error(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
             return Result<ShippingResponse>.Seccuss(shipping);
         }
 
@@ -62,10 +62,10 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<bool>> Update(int ShippingID, ShippingRequest Request)
         {
            if (!await IsExsist(ShippingID))
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
             var shipping = await _shippingRopesitry.UpdateAsync(ShippingID, Request);
             if (shipping < 0)
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
             return Result<bool>.Seccuss(true);
 
         }
@@ -75,9 +75,9 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<bool>> UpdateActualDeliveryDate(DateTime ActualDeliveryDate, int ShippingID)
         {
             if (!await IsExsist(ShippingID))
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
             var result = await _shippingRopesitry.UpdateActualDeliveryDate(ActualDeliveryDate,ShippingID);
-            return result ? Result<bool>.Seccuss(result) : Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.ServerError,StatusCodes.Status500InternalServerError));
+            return result ? Result<bool>.Seccuss(result) : Result<bool>.Failure<bool>(new Error(ShippingsErrors.ServerError,StatusCodes.Status500InternalServerError));
        
         }
 
@@ -85,9 +85,9 @@ namespace EcommerceLogicalLayer.Services
         public async Task<Result<bool>> UpdateStatus(int Status, int ShippingID)
         {
             if (!await IsExsist(ShippingID))
-                return Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
+                return Result<bool>.Failure<bool>(new Error(ShippingsErrors.NotFound, StatusCodes.Status404NotFound));
             var result = await _shippingRopesitry.UpdateStatus(Status, ShippingID); 
-            return result ? Result<bool>.Seccuss(result) : Result<bool>.Fialer<bool>(new Erorr(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
+            return result ? Result<bool>.Seccuss(result) : Result<bool>.Failure<bool>(new Error(ShippingsErrors.ServerError, StatusCodes.Status500InternalServerError));
 
         }
     }

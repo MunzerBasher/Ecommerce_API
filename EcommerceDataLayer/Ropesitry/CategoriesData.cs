@@ -1,4 +1,4 @@
-﻿using EcommerceDataLayer.DTOS;
+﻿using EcommerceDataLayer.Entities.Categories;
 using EcommerceDataLayer.IRopesitry;
 using EcommerceDataLayer.Shared;
 using Microsoft.Data.SqlClient;
@@ -195,14 +195,14 @@ namespace EcommerceDataLayer.Ropesitry
         }
 
   
-        public async Task<bool> IsExistAsync(int ProductID)
+        public async Task<bool> IsExistAsync(int CategoryId)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
                 SqlCommand command = new SqlCommand("CategoryIsEXISTS", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@CategoryID", ProductID);
+                command.Parameters.AddWithValue("@CategoryID", CategoryId);
                 int rowsAffected = Convert.ToInt32(await command.ExecuteScalarAsync());
                 return rowsAffected > 0;
             }

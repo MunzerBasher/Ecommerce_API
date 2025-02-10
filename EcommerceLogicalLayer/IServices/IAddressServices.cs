@@ -1,6 +1,4 @@
-﻿
-
-using EcommerceDataLayer.Entities.Address;
+﻿using EcommerceDataLayer.Entities.Address;
 using EcommerceLogicalLayer.Helpers;
 
 namespace EcommerceDataLayer.IRopesitry
@@ -9,13 +7,15 @@ namespace EcommerceDataLayer.IRopesitry
     {
         public Task<Result<bool>> AddAsync(AddressRequest address);
 
-        public Task<Result<AddressDTO>> GetByIdAsync(int addressID);
+        public Task<Result<AddressResponse>> GetByIdAsync(int addressId);
 
-        public Task<Result<bool>> UpdateAsync(AddressDTO address);
+        public Task<Result<bool>> UpdateAsync(AddressRequest address, int addressId);
 
-        public Task<Result<bool>> DeleteAsync(int addressID);
+        public Task<Result<bool>> DeleteAsync(int addressId);
 
-        public Task<Result<List<AddressDTO>>> GetAllUserAddressesAsync(int userID);
+        public Task<Result<List<AddressResponse>>> GetAllUserAddressesAsync(string UserId);
+
+        public Task<Result<List<AddressResponse>>> GetAllAsync();
 
     }
 }
