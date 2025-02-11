@@ -12,7 +12,7 @@
 
 
 
-        [HttpPost]
+        [HttpPost("")]
         public async Task<IActionResult> StripeWebhook()
         {
             var result = await _paymentsServices.StripeWebhook();
