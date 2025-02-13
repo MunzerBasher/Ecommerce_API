@@ -10,6 +10,7 @@ namespace ShippingApi.Controllers
     {
         private readonly IShippingServices _shipping = shipping;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetShippings)]
         [HttpGet("")]
         public async Task<ActionResult<List<ShippingResponse>>> GetAllShippings()
@@ -18,6 +19,7 @@ namespace ShippingApi.Controllers
             return Ok(result.Value);
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.AddShippings)]
         [HttpPost("")]
         public async Task<ActionResult<int>> Add([FromBody] ShippingRequest shippingDTO)
@@ -26,6 +28,7 @@ namespace ShippingApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.UpdateShippings)]
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> Update([FromBody] ShippingRequest shippingDTO, int id)
@@ -34,6 +37,7 @@ namespace ShippingApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.DeleteShippings)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
@@ -41,6 +45,8 @@ namespace ShippingApi.Controllers
             var result = await _shipping.Delete(id);
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetShippings)]
         [HttpGet("Shipping-Owner-Details/{ownerId}")]
         public async Task<ActionResult<ShippingOwnerResponse>> GetShippingOwnerDetails(int ownerId)
@@ -49,6 +55,7 @@ namespace ShippingApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.UpdateShippings)]
         [HttpPut("Status")]
         public async Task<ActionResult<int>> UpdateStatus([FromBody] UpdateStatusRequest Request)
@@ -57,6 +64,7 @@ namespace ShippingApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.UpdateShippings)]
         [HttpPut("Actual-Delivery-Date")]
         public async Task<ActionResult<int>> UpdateActualDeliveryDate([FromBody] UpdateActualDateRequest Request)

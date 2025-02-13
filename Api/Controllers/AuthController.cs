@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.RateLimiting;
-using SurveyBasket.Abstractions.Consts;
-
-namespace Api.Controllers
+﻿namespace Api.Controllers
 {
 
     [Route("api/[controller]")]
@@ -36,7 +33,7 @@ namespace Api.Controllers
             return response.IsSuccess ? Ok(response.Value) : response.ToProblem();
         }
 
-
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HttpPost("ReVoke")]
         public async Task<ActionResult<AuthResponse>> ReVokeReFreshToken([FromBody] ReFreshTokenRequest refreshTokenRequest, CancellationToken cancellationToken)
         {
@@ -44,7 +41,7 @@ namespace Api.Controllers
             var response = await _loginService.ReVokeReFreshTokenAsnyc(refreshTokenRequest, cancellationToken);
             return response.IsSuccess ? Ok(response.Value) : response.ToProblem();
         }
-
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HttpPost("Conform-Email")]
         public async Task<IActionResult> ConformEmailAsync(ConfirmEmailRequest request)
         {
@@ -52,7 +49,7 @@ namespace Api.Controllers
             return response.IsSuccess ? Ok() : response.ToProblem();
         }
 
-
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HttpPost("ResendConform-Email")]
         public async Task<IActionResult> ResendConfirmationEmailAsync(string Email, CancellationToken cancellationToken = default)
         {
@@ -60,6 +57,7 @@ namespace Api.Controllers
             return response.IsSuccess ? Ok() : response.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HttpPost("Forget-Password")]
         public async Task<IActionResult> ForgetPasswordAsync(string emali)
         {
@@ -67,6 +65,7 @@ namespace Api.Controllers
             return response.IsSuccess ? Ok() : response.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HttpPost("Reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {

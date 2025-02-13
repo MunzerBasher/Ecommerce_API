@@ -11,6 +11,7 @@ namespace EcommerceAPI.Controllers
     {
         private readonly IItemsServices _orderItemsServices = orderItemsServices;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.AddItems)]
         [HttpPost("{orderId}")]
         public async Task<ActionResult<int>> AddItem([FromBody] ItemRequest orderItem, int orderId)
@@ -20,6 +21,7 @@ namespace EcommerceAPI.Controllers
 
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.DeleteItems)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
@@ -29,7 +31,7 @@ namespace EcommerceAPI.Controllers
         }
 
 
-
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.UpdateItems)]
         [HttpPut("QuantityinOrder")]
         public async Task<ActionResult<int>> UpdateItemQuantity([FromBody] UpdateOrderItemQuantityDTO request)
@@ -38,6 +40,7 @@ namespace EcommerceAPI.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetItems)]
         [HttpGet("{OrderId}")]
         public async Task<ActionResult<List<ItemResponse>>> GetAll(int OrderId)

@@ -1,6 +1,6 @@
 ﻿
 using SurveyManagementSystemApi.Abstractions.Consts;
-using SurveyManagementSystemApi.Securty.Filters;
+
 
 namespace SurveyManagementSystemApi.Controllers
 {
@@ -10,6 +10,7 @@ namespace SurveyManagementSystemApi.Controllers
     {
         private readonly IUsersManager _userService = usersManager;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("")]
         [HasPermission(Permissions.GetUsers)]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -17,6 +18,7 @@ namespace SurveyManagementSystemApi.Controllers
             return Ok(await _userService.GetAllAsync(cancellationToken));
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("{id}")]
         [HasPermission(Permissions.GetUsers)]
         public async Task<IActionResult> Get([FromRoute] string id)
@@ -26,6 +28,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("")]
         [HasPermission(Permissions.AddUsers)]
         public async Task<IActionResult> Add([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
@@ -35,6 +38,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? CreatedAtAction(nameof(Get), new { result.Value!.Id }, result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{id}")]
         [HasPermission(Permissions.UpdateUsers)]
         public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
@@ -44,6 +48,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{id}/toggle-status")]
         [HasPermission(Permissions.UpdateUsers)]
         public async Task<IActionResult> ToggleStatus([FromRoute] string id)
@@ -52,6 +57,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{id}/unlock")]
         [HasPermission(Permissions.UpdateUsers)]
         public async Task<IActionResult> Unlock([FromRoute] string id)

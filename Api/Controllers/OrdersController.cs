@@ -10,6 +10,7 @@ namespace MyControllers
     {
         private readonly IOrdersServices _orders = orders;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.AddOrders)]
         [HttpPost("")]
        
@@ -20,6 +21,7 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.DeleteOrders)]
         [HttpDelete("{orderId}")]
         
@@ -30,6 +32,7 @@ namespace MyControllers
 
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("")]
         
@@ -39,6 +42,7 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("Recently")]
        
@@ -48,6 +52,7 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("Count")]
        
@@ -57,6 +62,8 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
 
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("CountByStatus/{Status}")]
        
@@ -66,6 +73,8 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
 
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("TotalPrice/{OrderId}")]
         
@@ -75,6 +84,7 @@ namespace MyControllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetOrders)]
         [HttpGet("User/{UserId}")]
 

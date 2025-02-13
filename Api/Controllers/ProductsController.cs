@@ -22,6 +22,7 @@ namespace EcommerceApiLayer.Controllers
             var result = await _product.GetAll();
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetProducts)]
         [HttpGet("Search/{value}")]
         public async Task<ActionResult<List<ProductResponse>>> GetProductsByChar([FromRoute] string value)
@@ -29,6 +30,7 @@ namespace EcommerceApiLayer.Controllers
             var result = await _product.GetProductsByFirstChar(value);
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetProducts)]
         [HttpGet("{id}")]
         public async Task<ActionResult<List<ProductResponse>>> GetProductsById([FromRoute] int id)
@@ -36,6 +38,7 @@ namespace EcommerceApiLayer.Controllers
             var result = await _product.GetByIdAsync(id);
             return result.IsSuccess ? Ok(result.Value): result.ToProblem();
         }
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetProducts)]
         [HttpGet("Avalibale-Quantity/{id}")]
         public async Task<ActionResult<List<ProductResponse>>> AvalibaleQuantityById([FromRoute] int id)
@@ -44,6 +47,7 @@ namespace EcommerceApiLayer.Controllers
             return result.IsSuccess? Ok(result.Value): result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.AddProducts)]
         [HttpPost("")]
         public async Task<IActionResult> AddProduct([FromBody] ProductRequest product)
@@ -52,6 +56,7 @@ namespace EcommerceApiLayer.Controllers
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.UpdateProducts)]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct([FromBody] ProductRequest product, int id)
@@ -59,6 +64,8 @@ namespace EcommerceApiLayer.Controllers
             var result = await _product.Update(product, id);
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.DeleteProducts)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
@@ -68,6 +75,7 @@ namespace EcommerceApiLayer.Controllers
 
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.AddProductsImage)]
         [HttpPost("Image/{id}")]
         public async Task<IActionResult> AddImage([FromBody] ProductImageRequest ImageRequest)
@@ -76,6 +84,8 @@ namespace EcommerceApiLayer.Controllers
             var result = await _productImagesServices.Add(ImageRequest);
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetProductsImage)]
         [HttpGet("Images/{id}")]
         public async Task<ActionResult<List<ProductImageResponse>>> GetAllImages([FromRoute] int id)
@@ -84,6 +94,7 @@ namespace EcommerceApiLayer.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.DeleteProductsImage)]
         [HttpDelete("Image/{id}")]
         public async Task<IActionResult> DeleteImage(int id)

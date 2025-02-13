@@ -1,5 +1,4 @@
 ﻿using SurveyManagementSystemApi.Abstractions.Consts;
-using SurveyManagementSystemApi.Securty.Filters;
 
 namespace EcommerceApi.Controllers
 {
@@ -9,6 +8,7 @@ namespace EcommerceApi.Controllers
     {
         private readonly IFavorites _favorites = Favorites;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("")]
         [HasPermission(Permissions.GetFavorites)]
         public async Task<IActionResult> AddToFavorite([FromBody] FavoriteDTO request, CancellationToken cancellationToken = default)
@@ -18,6 +18,7 @@ namespace EcommerceApi.Controllers
 
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpDelete("")]
         [HasPermission(Permissions.DeleteFavorites)]
         public async Task<ActionResult<Result<bool>>> Delete([FromBody] FavoriteDTO request, CancellationToken cancellationToken = default)
@@ -26,6 +27,8 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result) : result.ToProblem();
 
         }
+
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HasPermission(Permissions.GetFavorites)]
         [HttpGet("MyFavorites")]
         public async Task<ActionResult<Result<List<int>>>> GetAll( CancellationToken cancellationToken = default)

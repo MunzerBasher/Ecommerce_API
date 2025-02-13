@@ -6,12 +6,9 @@
     {
         private readonly IFileServices _fileServices = fileServices;
 
-       /// <summary>
-       /// [HasPermission(Permissions.UploadImage)]
-       /// </summary>
-       /// <param name="request"></param>
-       /// <param name="cancellationToken"></param>
-       /// <returns></returns>
+       
+        
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("Upload-Image")]
         public async Task<IActionResult> UploadImage([FromForm] UploadImageRequest request, CancellationToken cancellationToken)
         {
@@ -19,8 +16,8 @@
 
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
-        //wwwroot/images/0821a4ef-c35a-42ca-8747-fa2368d5da74.png
-
+        
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpDelete("Delete-image/{ImageUrl}")]
         public async Task<IActionResult> DeleteImage(string ImageUrl, CancellationToken cancellationToken)
         {

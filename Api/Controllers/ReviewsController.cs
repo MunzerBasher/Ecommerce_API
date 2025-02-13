@@ -9,6 +9,7 @@ namespace EcommerceApi.Controllers
     {
         private readonly IReviewsServices _reviewsServices = reviewsServices;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("User/{UserId}")]
         [ProducesResponseType(typeof(List<ReviewResponse>), 200)]
         public async Task<ActionResult<List<ReviewResponse>>> GetAllUserReviews(string UserId)
@@ -17,6 +18,7 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("Product/{ProductId}")]
         [ProducesResponseType(typeof(List<ReviewResponse>), 200)]
         public async Task<ActionResult<List<ReviewResponse>>> GetAllProductReviews(int ProductId)
@@ -25,6 +27,7 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("{UserId}Product/{ProductId}")]
         [ProducesResponseType(typeof(List<ReviewResponse>), 200)]
         public async Task<ActionResult<List<ReviewResponse>>> GetAllProductReviews(int ProductId, string UserId)
@@ -33,7 +36,7 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
-
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("")]
 
         public async Task<IActionResult> Add([FromBody] ReviewRequest review)
@@ -42,7 +45,7 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
-       
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpDelete("{ReviewId}")]
        
         public async Task<IActionResult>  Delete(int ReviewId)
@@ -51,7 +54,7 @@ namespace EcommerceApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
-
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{ReviewId}")]
        
         public async Task<IActionResult> Update([FromBody] UpdateReviewRequest updateReviewRequest, int ReviewId)

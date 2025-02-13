@@ -12,6 +12,7 @@ namespace SurveyManagementSystemApi.Controllers
     {
         private readonly IRoleService _roleService = roleService;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("")]
         [HasPermission(Permissions.GetRoles)]
         public async Task<IActionResult> GetAll([FromQuery] bool includeDisabled, CancellationToken cancellationToken)
@@ -21,6 +22,7 @@ namespace SurveyManagementSystemApi.Controllers
             return Ok(roles);
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpGet("{id}")]
         [HasPermission(Permissions.GetRoles)]
         public async Task<IActionResult> Get([FromRoute] string id)
@@ -30,6 +32,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("")]
        [HasPermission(Permissions.AddRoles)]
         public async Task<IActionResult> Add([FromBody] RoleRequest request)
@@ -39,6 +42,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? CreatedAtAction(nameof(Get), new { result.Value!.Id }, result.Value) : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{id}")]
         [HasPermission(Permissions.UpdateRoles)]
         public async Task<IActionResult> Update([FromRoute] string id, [FromBody] RoleRequest request)
@@ -48,6 +52,7 @@ namespace SurveyManagementSystemApi.Controllers
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPut("{id}/toggle-status")]
         [HasPermission(Permissions.UpdateRoles)]
         public async Task<IActionResult> ToggleStatus([FromRoute] string id)

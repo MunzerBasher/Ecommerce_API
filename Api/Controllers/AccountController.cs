@@ -10,6 +10,7 @@ namespace Api.Controllers
     {
         private readonly IAccountService _accountService = accountService;
 
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HasPermission(Permissions.GetProfile)]
         [HttpGet("Profile")]
         public async Task<ActionResult<ProfileResponse>> GetProfile()
@@ -19,6 +20,7 @@ namespace Api.Controllers
             return profile.IsSuccess ? Ok(profile.Value) : profile.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HasPermission(Permissions.UpdateProfile)]
         [HttpPut("Profile")]
         public async Task<IActionResult> UpdateProfile(UpdateProfileRequest updateProfileRequest)
@@ -27,6 +29,7 @@ namespace Api.Controllers
             return profile.IsSuccess ? Ok(profile) : profile.ToProblem();
         }
 
+        [EnableRateLimiting(RateLimiters.UserLimiter)]
         [HasPermission(Permissions.ChangePassword)]
         [HttpPut("Change-Password")]
         public async Task<IActionResult> ChangePassword(ChangePasswordRequest changePasswordRequest)

@@ -154,8 +154,7 @@ namespace Api.Auth
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                await SendConfirmationEmail(user, code);
-               // BackgroundJob.Enqueue(() => SendConfirmationEmail(user, code));
+                BackgroundJob.Enqueue(() => SendConfirmationEmail(user, code));
                 return Result.Seccuss();
             }
             var error = result.Errors.First();

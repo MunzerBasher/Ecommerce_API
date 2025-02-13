@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcommerceLogicalLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+715508cb1923f8e264b02877418d7c19611020aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47e8c388b3b33601736d1375636b8e269e63d8e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcommerceLogicalLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcommerceLogicalLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

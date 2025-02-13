@@ -7,11 +7,12 @@
     {
         private readonly IPaymentsServices _paymentsServices = paymentsServices;
 
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("Create-Checkout-Session{OrderId}")]
         public async Task<ActionResult<string>> CreateCheckoutSession([FromRoute] int OrderId) => Ok(await _paymentsServices.CreateCheckoutSession(OrderId));
 
 
-
+        [EnableRateLimiting(RateLimiters.Concurrency)]
         [HttpPost("")]
         public async Task<IActionResult> StripeWebhook()
         {
