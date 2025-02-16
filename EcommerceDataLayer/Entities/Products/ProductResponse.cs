@@ -8,6 +8,8 @@
         public decimal Price { get; set; }
         public int QuantityInStock { get; set; }
         public string CategoryName { get; set; } = string.Empty;
+        public string ImagesUrl { get; set; } = string.Empty; 
+        public int ImageId { get; set; }
     }
 
 

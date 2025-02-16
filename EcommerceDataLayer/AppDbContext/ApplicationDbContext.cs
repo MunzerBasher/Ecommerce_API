@@ -1,5 +1,4 @@
-﻿
-using EcommerceDataLayer.Entities.Roles;
+﻿using EcommerceDataLayer.Entities.Roles;
 using EcommerceDataLayer.Entities.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +17,7 @@ namespace EcommerceDataLayer.AppDbContex
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-LMLA8GF\\MSSQLSERVERNEW;Database=Ecommerce;User Id=sa;Password=sa123456;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-LMLA8GF\\MSSQLSERVERNEW;Database=Ecommerce;User Id=sa;Password=sa123456;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);
         }
 

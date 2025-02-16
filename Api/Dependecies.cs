@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace Api
+﻿namespace Api
 {
     public static class Dependecies
     {

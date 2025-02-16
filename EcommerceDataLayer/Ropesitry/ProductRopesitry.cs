@@ -40,7 +40,8 @@ namespace EcommerceDataLayer.Ropesitry
                             Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                             QuantityInStock = reader.GetInt32(reader.GetOrdinal("QuantityInStock")),
                             CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
-
+                            ImagesUrl = reader["ImageURL"] == DBNull.Value ?  "": reader.GetString(reader.GetOrdinal("ImageURL")),
+                            ImageId = reader["ImageID"] == DBNull.Value ? 0 : reader.GetInt32(reader.GetOrdinal("ImageID"))
                         };
                         products.Add(product);
                     }
@@ -72,7 +73,8 @@ namespace EcommerceDataLayer.Ropesitry
                             Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                             QuantityInStock = reader.GetInt32(reader.GetOrdinal("QuantityInStock")),
                             CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
-
+                            ImagesUrl = reader["ImageURL"] == DBNull.Value ? "" : reader.GetString(reader.GetOrdinal("ImageURL")),
+                            ImageId = reader["ImageID"] == DBNull.Value ? 0 : reader.GetInt32(reader.GetOrdinal("ImageID"))
                         };
                     }
                 }

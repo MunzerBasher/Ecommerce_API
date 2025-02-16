@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EcommerceApi"
+    "\\Api",
+    "\\EcommerceApi",
+    "\\EcommerceDataLayer",
+    "\\EcommerceDataLayer\\Entities",
+    "\\EcommerceDataLayer\\Entities\\Products",
+    "\\EcommerceLogicalLayer",
+    "\\EcommerceLogicalLayer\\Errors"
   ],
-  "SelectedNode": "\\EcommerceApi\\EcommerceApi.sln",
+  "SelectedNode": "\\EcommerceDataLayer\\Entities\\Products\\ProductImageResponse.cs",
   "PreviewInSolutionExplorer": false
 }

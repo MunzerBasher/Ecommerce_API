@@ -1,0 +1,15 @@
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\bin\Release\net8.0\EcommerceDataLayer.deps.json
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\bin\Release\net8.0\EcommerceDataLayer.runtimeconfig.json
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\bin\Release\net8.0\EcommerceDataLayer.dll
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\bin\Release\net8.0\EcommerceDataLayer.pdb
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.csproj.AssemblyReference.cache
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.AssemblyInfo.cs
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.sourcelink.json
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.dll
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\refint\EcommerceDataLayer.dll
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.pdb
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\EcommerceDataLayer.genruntimeconfig.cache
+C:\Users\DELL\Desktop\Ecommerce-WebApi\EcommerceDataLayer\obj\Release\net8.0\ref\EcommerceDataLayer.dll

@@ -8,9 +8,10 @@
     }
 
      public class ProductImageRequest
-    {
+     {
         public string ImageURL { get; set; } = string.Empty;
         public int ProductID { get; set; }
-    }
+     }
+
 
 }
