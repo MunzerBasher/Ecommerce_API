@@ -46,11 +46,14 @@ namespace Api.Auth
             var result = await _userManager.CreateAsync(User, registerRequest.Password);
             if (result.Succeeded)
             {
+                var role = await _context.Roles.Where(r => r.IsDefault && ! r.IsDeleted).Select(r => r.Name).ToListAsync();
+                await _userManager.AddToRolesAsync(User, role!);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(User);
-                _logger.LogInformation($"before encoding  {code}");
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                _logger.LogInformation($"after encoding  {code}");
-                await SendConfirmationEmail(User, code);
+                //_logger.LogInformation($"before encoding  {code}");
+                //_logger.LogInformation($"role   {role.FirstOrDefault()}");
+                //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //_logger.LogInformation($"after encoding  {code}");
+                  //await SendConfirmationEmail(User, code);
                 return Result<string>.Seccuss("");
             }
             var error = result.Errors.First();
@@ -64,7 +67,7 @@ namespace Api.Auth
             var user = await _userManager.Users.SingleOrDefaultAsync(x => x.Email == loginRequest.Email);
             if (user is null)
             {
-                return Result<AuthResponse>.Failure<AuthResponse>(new Error(AuthErrors.Duplicated, StatusCodes.Status400BadRequest));
+                return Result<AuthResponse>.Failure<AuthResponse>(new Error(AuthErrors.Invalid, StatusCodes.Status400BadRequest));
             }
             if (!await _userManager.CheckPasswordAsync(user, loginRequest.Password))
                 return Result<AuthResponse>.Failure<AuthResponse>(new Error(AuthErrors.Invalid, StatusCodes.Status400BadRequest));
@@ -256,8 +259,9 @@ namespace Api.Auth
                     { "{{action_url}}", $"{origin}/auth/emailConfirmation?userId={user.Id}&code={code}" }
                 }
             );
-            BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce Api : Email Confirmation", emailBody));
-            await Task.CompletedTask;
+            //BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce Api : Email Confirmation", emailBody));
+            // await Task.CompletedTask;
+            await _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce Api : Email Confirmation", emailBody);
         }
 
         private async Task SendResetPasswordEmail(UserIdentity user, string code)
@@ -272,9 +276,10 @@ namespace Api.Auth
                 }
             );
 
-            BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce: Change Password", emailBody));
+            // BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce: Change Password", emailBody));
 
-            await Task.CompletedTask;
+            //await Task.CompletedTask;
+            await _emailService.SendEmailAsync(user.Email!, "✅ Ecommerce: Change Password", emailBody);
         }
 
 
