@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\ReviewsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\Controllers\\ReviewsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\FavoriteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\Controllers\\FavoriteController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\OrdersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\Controllers\\OrdersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\GlobalUsing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\GlobalUsing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\EcommerceApi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\EcommerceApi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerceApi\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,16 +62,77 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FavoriteController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\FavoriteController.cs",
+              "RelativeDocumentMoniker": "EcommerceApi\\Controllers\\FavoriteController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\FavoriteController.cs",
+              "RelativeToolTip": "EcommerceApi\\Controllers\\FavoriteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T08:44:37.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "EcommerceApi\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "EcommerceApi\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T08:44:31.502Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ReviewsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\ReviewsController.cs",
+              "RelativeDocumentMoniker": "EcommerceApi\\Controllers\\ReviewsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Controllers\\ReviewsController.cs",
+              "RelativeToolTip": "EcommerceApi\\Controllers\\ReviewsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T08:44:29.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GlobalUsing.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\GlobalUsing.cs",
+              "RelativeDocumentMoniker": "EcommerceApi\\GlobalUsing.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\GlobalUsing.cs",
+              "RelativeToolTip": "EcommerceApi\\GlobalUsing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T08:42:20.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EcommerceApi.http",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\EcommerceApi.http",
+              "RelativeDocumentMoniker": "EcommerceApi\\EcommerceApi.http",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\EcommerceApi.http",
+              "RelativeToolTip": "EcommerceApi\\EcommerceApi.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-01-25T19:55:43.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Program.cs",
               "RelativeDocumentMoniker": "EcommerceApi\\Program.cs",
               "ToolTip": "C:\\Users\\DELL\\Desktop\\EcommerceApi\\EcommerceApi\\Program.cs",
               "RelativeToolTip": "EcommerceApi\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T19:47:36.344Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T19:47:36.344Z"
             }
           ]
         }

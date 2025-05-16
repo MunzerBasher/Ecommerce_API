@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using EcommerceLogicalLayer.IServices;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Text;
 
 namespace EcommerceLogicalLayer.Services
 {
-    public class CreateJwtToken
+    public class JwtToken : IJwtToken
     {
         private readonly Jwt _jwt;
 
-        public CreateJwtToken(Jwt jwt1)
+        public JwtToken(Jwt jwt1)
         {
             _jwt = jwt1;
         }

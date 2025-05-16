@@ -1,9 +1,11 @@
-﻿using EcommerceDataLayer.Shared;
+﻿using EcommerceDataLayer.Entities.Address;
+using EcommerceDataLayer.IRopesitry;
+using EcommerceDataLayer.Shared;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
 
-public class AddressDataAccess
+public class AddressDataAccess: IAddressRopesitry
 {
     private  readonly string _connectionString;
     public AddressDataAccess(ConnectionString connectionString)
@@ -11,7 +13,7 @@ public class AddressDataAccess
         _connectionString = connectionString.connectionString;
     }
 
-    public bool AddAddress(AddressDTO address)
+    public async Task<bool> AddAsync(AddressRequest address)
     {
         using (SqlConnection conn = new SqlConnection(_connectionString))
         {
@@ -22,8 +24,8 @@ public class AddressDataAccess
             cmd.Parameters.AddWithValue("@Country", address.Country);
             cmd.Parameters.AddWithValue("@Longitude", address.Longitude);
             cmd.Parameters.AddWithValue("@Latitude", address.Latitude);
-            conn.Open();
-            var AddressId = Convert.ToInt32(cmd.ExecuteScalar()); 
+            await conn.OpenAsync();
+            var AddressId = Convert.ToInt32(await cmd.ExecuteScalarAsync()); 
             var result = 0;
             if (AddressId > 0)
             {
@@ -31,7 +33,7 @@ public class AddressDataAccess
                 cmd2.CommandType = CommandType.StoredProcedure;
                 cmd2.Parameters.AddWithValue("@UserId", address.UserID);
                 cmd2.Parameters.AddWithValue("@AddressId", AddressId);
-                result = Convert.ToInt32(cmd2.ExecuteScalar());
+                result = Convert.ToInt32(await cmd2.ExecuteScalarAsync()); ;
             }
             return Convert.ToInt32(result) > 0;
         }
@@ -39,38 +41,43 @@ public class AddressDataAccess
 
     }
 
-    public  AddressDTO? GetAddressByID(int addressID)
+    public async Task<AddressDTO?> GetByIdAsync(int addressID)
     {
         using (SqlConnection conn = new SqlConnection(_connectionString))
         {
+            await conn.OpenAsync();
+
             SqlCommand cmd = new SqlCommand("sp_GetAddress", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@AddressID", addressID);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
 
-            if (dt.Rows.Count == 0)
+            using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
             {
-                return null;
+                if (!await reader.ReadAsync())
+                {
+                    return null;
+                }
+
+                AddressDTO address = new AddressDTO
+                {
+                    UserID = Convert.ToInt32(reader["UserID"]),
+                    AddressID = Convert.ToInt32(reader["AddressID"]),
+                    AddressLine = reader["AddressLine"].ToString(),
+                    City = reader["City"].ToString(),
+                    Country = reader["Country"].ToString(),
+                    Longitude = Convert.ToDecimal(reader["Longitude"]),
+                    Latitude = Convert.ToDecimal(reader["Latitude"]),
+                };
+
+                return address;
             }
-            DataRow row = dt.Rows[0];
-            AddressDTO address = new AddressDTO
-            {
-                AddressID = Convert.ToInt32(row["AddressID"]),
-                AddressLine = row["AddressLine"].ToString(),
-                City = row["City"].ToString(),
-                Country = row["Country"].ToString(),
-                Longitude = Convert.ToDecimal(row["Longitude"]),
-                Latitude = Convert.ToDecimal(row["Latitude"]),
-            };
-
-            return address;
         }
     }
 
-    public  void UpdateAddress(AddressDTO address)
+
+    public async Task<bool> UpdateAsync(AddressDTO address)
     {
+        var rows = 0;
         using (SqlConnection conn = new SqlConnection(_connectionString))
         {
             SqlCommand cmd = new SqlCommand("sp_UpdateAddress", conn);
@@ -82,52 +89,57 @@ public class AddressDataAccess
             cmd.Parameters.AddWithValue("@Country", address.Country);
             cmd.Parameters.AddWithValue("@Longitude", address.Longitude);
             cmd.Parameters.AddWithValue("@Latitude", address.Latitude);
-            conn.Open();
-            cmd.ExecuteNonQuery();
+             await conn.OpenAsync();
+            rows = Convert.ToInt32(await cmd.ExecuteScalarAsync());
         }
+        return rows > 0;
     }
 
 
-    public  void DeleteAddress(int addressID)
+    public async Task<bool> DeleteAsync(int addressID)
     {
+        var row = 0;
         using (SqlConnection conn = new SqlConnection(_connectionString))
         {
             SqlCommand cmd = new SqlCommand("sp_DeleteAddress", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@AddressID", addressID);
-            conn.Open();
-            cmd.ExecuteNonQuery();
+            await conn.OpenAsync();
+            row  = Convert.ToInt32(await cmd.ExecuteScalarAsync());
         }
+        return row > 0;
     }
 
-    public  List<AddressDTO> GetAllAddressesByUserID(int userID)
+    public async Task<List<AddressDTO>> GetAllAddressesByUserIDAsync(int userID)
     {
         List<AddressDTO> addresses = new List<AddressDTO>();
 
         using (SqlConnection conn = new SqlConnection(_connectionString))
         {
+            await conn.OpenAsync();
+
             SqlCommand cmd = new SqlCommand("GetUserAddress", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@UserID", userID);
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow row in dt.Rows)
+            using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
             {
-                AddressDTO address = new AddressDTO
+                while (await reader.ReadAsync())
                 {
-                    AddressID = Convert.ToInt32(row["AddressID"]),
-                    AddressLine = row["AddressLine"].ToString(),
-                    City = row["City"].ToString(),
-                    Country = row["Country"].ToString(),
-                    Longitude = Convert.ToDecimal(row["Longitude"]),
-                    Latitude = Convert.ToDecimal(row["Latitude"]),
-                };
+                    AddressDTO address = new AddressDTO
+                    {
+                        //UserID = Convert.ToInt32(reader["UserID"]),
+                        AddressID = Convert.ToInt32(reader["AddressID"]),
+                        AddressLine = reader["AddressLine"].ToString(),
+                        City = reader["City"].ToString(),
+                        Country = reader["Country"].ToString(),
+                        Longitude = Convert.ToDecimal(reader["Longitude"]),
+                        Latitude = Convert.ToDecimal(reader["Latitude"]),
+                    };
 
-                addresses.Add(address);
+                    addresses.Add(address);
+                }
             }
         }
 

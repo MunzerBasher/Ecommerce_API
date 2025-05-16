@@ -7,4 +7,6 @@
     public required string Country { get; set; }
     public required decimal Longitude { get; set; }
     public required decimal Latitude { get; set; }
+
+
 }

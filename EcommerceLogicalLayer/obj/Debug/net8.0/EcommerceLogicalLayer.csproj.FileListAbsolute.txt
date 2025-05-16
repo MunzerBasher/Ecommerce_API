@@ -43,3 +43,6 @@ C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\Ecomme
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\refint\EcommerceLogicalLayer.dll
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\EcommerceLogicalLayer.pdb
 C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\ref\EcommerceLogicalLayer.dll
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\EcommerceLogicalLayer.sourcelink.json
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\bin\Debug\net8.0\EcommerceLogicalLayer.runtimeconfig.json
+C:\Users\DELL\Desktop\EcommerceApi\EcommerceLogicalLayer\obj\Debug\net8.0\EcommerceLogicalLayer.genruntimeconfig.cache

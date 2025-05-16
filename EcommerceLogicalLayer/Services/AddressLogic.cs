@@ -1,67 +1,77 @@
-﻿using EcommerceLogicalLayer.IService;
+﻿using EcommerceDataLayer.Entities.Address;
+using EcommerceDataLayer.IRopesitry;
+using EcommerceLogicalLayer.Helpers;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Net;
+
 
 namespace EcommerceLogicalLayer.Services
 {
-    public class AddressLogic : IAddress
+    public class AddressLogic(IAddressRopesitry addressRopesitry) : IAddressServices
     {
-        private readonly AddressDataAccess _addressDataAccess;
-        public AddressLogic(AddressDataAccess addressDataAccess)
-        {
-            _addressDataAccess = addressDataAccess;
-        }
+        private readonly IAddressRopesitry _addressRopesitry = addressRopesitry;
 
-        public bool Add(AddressDTO address)
+       
+        public async Task<Result<bool>> AddAsync(AddressRequest address)
         {
             if (address == null)
             {
-                throw new ArgumentNullException("address");
+                return Result<bool>.Fialer<bool>(new Erorr("Bad Request", StatusCodes.Status400BadRequest));
 
             }
-            return _addressDataAccess.AddAddress(address);
+            var result = await _addressRopesitry.AddAsync(address);
+            return result ? Result<bool>.Seccuss(true) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+        
         }
 
-
-        public AddressDTO? GetByID(int addressID)
+        public async Task<Result<AddressDTO>> GetByIdAsync(int addressID)
         {
-            if (addressID < 0)
+            if (addressID < 1)
             {
                 throw new ArgumentNullException("addressID  most be grater than 0");
             }
-            return _addressDataAccess.GetAddressByID(addressID);
+           var Address = await _addressRopesitry.GetByIdAsync(addressID);
+            return Address is null ? Result<AddressDTO>.Fialer<AddressDTO>(new Erorr("addressID Not Found", StatusCodes.Status404NotFound)) :
+                Result<AddressDTO>.Seccuss(Address);
+
         }
 
-        public void Update(AddressDTO address)
+        public async Task<Result<bool>> UpdateAsync(AddressDTO address)
         {
             if (address == null)
             {
-                throw new ArgumentNullException("address is invalid");
+                return Result<bool>.Fialer<bool>(new Erorr("Bad Request", StatusCodes.Status400BadRequest));
             }
-            _addressDataAccess.UpdateAddress(address);
+            var result = await _addressRopesitry.UpdateAsync(address);
+            return result ? Result<bool>.Seccuss(true) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+
         }
 
-
-        public void Delete(int addressID)
+        public async Task<Result<bool>> DeleteAsync(int addressID)
         {
 
             if (addressID < 0)
             {
-                throw new ArgumentNullException("addressID  most be grater than 0");
+                return Result<bool>.Fialer<bool>(new Erorr("Bad Request", StatusCodes.Status400BadRequest));
             }
-            _addressDataAccess.DeleteAddress(addressID);
+            var Address = await _addressRopesitry.GetByIdAsync(addressID);
+            if (Address is null)
+                return Result<bool>.Fialer<bool>(new Erorr("addressID Not Found", StatusCodes.Status404NotFound));
+            var result = await _addressRopesitry.DeleteAsync(addressID);
+            return result ? Result<bool>.Seccuss(true) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
 
-
-        public List<AddressDTO> GetAllByUserID(int userID)
+        public async Task<Result<List<AddressDTO>>> GetAllUserAddressesAsync(int userID)
         {
 
             if (userID < 0)
             {
-                throw new ArgumentNullException("userID most be grater than 0");
+                return Result<List<AddressDTO>>.Fialer<List<AddressDTO>>(new Erorr("Bad Request", StatusCodes.Status400BadRequest));
             }
 
-            return _addressDataAccess.GetAllAddressesByUserID(userID);
+            var address = await _addressRopesitry.GetAllAddressesByUserIDAsync(userID);
+            return Result < List < AddressDTO >>.Seccuss(address);
         }
-
-
     }
 }

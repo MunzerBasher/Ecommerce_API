@@ -1,34 +1,61 @@
 ﻿using EcommerceDataLayer.DTOS;
-using EcommerceDataLayer.Ropesitry;
+using EcommerceDataLayer.IRopesitry;
+using EcommerceLogicalLayer.Helpers;
+using Microsoft.AspNetCore.Http;
 
 
 namespace EcommerceLogicalLayer.Services
 {
-    public class ProductLogic
+    public class ProductLogic(IProductRopesitry productRopesitry) : IProductServices
     {
-        public static List<ProductDTO> GetAllProducts()
+        private readonly IProductRopesitry _productRopesitry = productRopesitry;
+
+
+        public async Task<Result<List<ProductResponse>>> GetAll()
         {
-            return ProductDataAccess.GetAllProducts();
+            var result = await _productRopesitry.GetAllAsync();
+            return Result<List<ProductResponse>>.Seccuss(result);
         }
 
-        public static List<ProductDTO> GetProductsByFirstChar(string firstChar)
+        public async Task<Result<List<ProductResponse>>> GetProductsByFirstChar(string firstChar)
         {
-            return ProductDataAccess.GetProductsByFirstChar(firstChar);
-        }
-        public static bool CreateProduct(ProductDTO product)
-        {
-            return ProductDataAccess.CreateProduct(product);
+            var result = await _productRopesitry.GetProductsByFirstCharAsync(firstChar);
+            return Result<List<ProductResponse>>.Seccuss(result);
         }
 
-        public static bool UpdateProduct(ProductDTO product)
+        public async Task<Result<bool>> Add(ProductResponse product)
         {
-            return ProductDataAccess.UpdateProduct(product);
+            var result = await _productRopesitry.AddAsync(product);
+            return result ? Result<bool>.Seccuss(result) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
         }
 
-        public static bool DeleteProduct(int productId)
+        public async Task<Result> Update(ProductResponse product)
         {
-            return ProductDataAccess.DeleteProduct(productId);
+            var IsExist = await _productRopesitry.IsExistAsync(product.ProductID);
+            if(!IsExist)
+                return Result<bool>.Fialer<bool>(new Erorr("Product Is Not Found", StatusCodes.Status404NotFound));
+            var result = await _productRopesitry.UpdateAsync(product);
+            return result ? Result<bool>.Seccuss(result) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+
+
+
         }
 
+        public async Task<Result> Delete(int productId)
+        {
+            var IsExist = await _productRopesitry.IsExistAsync(productId);
+            if (!IsExist)
+                return Result<bool>.Fialer<bool>(new Erorr("Product Is Not Found", StatusCodes.Status404NotFound));
+            var result = await _productRopesitry.DeleteAsync(productId);
+            return result ? Result<bool>.Seccuss(result) : Result<bool>.Fialer<bool>(new Erorr("Internal Server Error", StatusCodes.Status500InternalServerError));
+
+        }
+
+        public async Task<bool> IsExistAsync(int ProductID)
+        {
+            var result = await _productRopesitry.IsExistAsync(ProductID);
+            return result;
+        }
     }
+
 }
