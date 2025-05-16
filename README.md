@@ -68,7 +68,7 @@ A robust and scalable **E-commerce Store API** built with **ASP.NET Core** to su
 
 ### Prerequisites
 
-- .NET 7 SDK or later
+- .NET 8 SDK 
 - SQL Server
 - Visual Studio / VS Code
 
